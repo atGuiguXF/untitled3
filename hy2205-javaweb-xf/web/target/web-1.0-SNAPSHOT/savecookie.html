@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function setCookie(name,value,expireDays){
+            var expires = new Date();
+            expires.setTime(expires.getTime() + expireDays*24*60*60*1000)
+            document.cookie = name + "=" + value + ";expires="+expires.toUTCString();
+        }
+        function getCookie(name){
+            var cookies = document.cookie
+            var cookieArr = cookies.split(";")
+            for (let i = 0; i < cookieArr.length; i++) {
+                var arr = cookieArr[i].trim().split("=")
+                if(name === arr[0])
+                    return arr[1]
+            }
+            return ""
+        }
+
+        function delCookie(name){
+            var expires = new Date();
+            expires.setTime(expires.getTime()-1)
+            document.cookie = name + "=1;expires="+expires.toUTCString()
+        }
+        window.onload=function (){
+            var usernameInput = document.getElementById("username")
+            var passwordInput = document.getElementById("password")
+            usernameInput.value = getCookie("username")
+            passwordInput.value = getCookie("password")
+            document.getElementById("btn").onclick=function(){
+                var username = usernameInput.value;
+                var password = passwordInput.value;
+                var infoRadios = document.getElementsByName("info")
+                for (let i = 0; i < infoRadios.length; i++) {
+                    if(infoRadios[i].checked){
+                        if(infoRadios[i].value === -1){
+                            delCookie("username")
+                            delCookie("password")
+                        }
+                        else{
+                            setCookie("username",username,parseInt(infoRadios[i].value))
+                            setCookie("password",password,parseInt(infoRadios[i].value))
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<form action="">
+    用户名:<input type="text" id="username"><br/>
+    密码:<input type="password" id="password"><br/>
+    是否保存登录信息:<input type="radio" name="info" checked value="-1">不保存
+    <input type="radio" name="info" value="7">保存一周
+    <input type="radio" name="info" value="30">保存30天
+    <br/>
+    <button type="button" id="b
+
+    tn">登录</button>
+</form>
+</body>
+</html>

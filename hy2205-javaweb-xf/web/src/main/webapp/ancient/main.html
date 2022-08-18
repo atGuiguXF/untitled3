@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function premod(){
+            var id = document.getElementById("id").value;
+            location.href = "PreModUserServlet?id="+id;
+        }
+    </script>
+</head>
+<body>
+<a href="adduser.html">添加一个用户</a><br>
+请输入用户ID:<input type="text" id="id"> <a href="#" onclick="premod()">修改一个用户</a><br>
+<a href="QueryAllUserServlet">查询所有用户</a>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--有一个输入框，有个按钮
+     点击该按钮，发送ajax，在输入框中显示服务器的当前系统时间 2022-08-15 12:13:14
+     -->
+    <script>
+        function clickme(){
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState===4 && xmlhttp.status===200)
+                {
+                    console.log(xmlhttp.responseText)
+                    var json = JSON.parse(xmlhttp.responseText);
+                    document.getElementById("date").value= json.now;
+                }
+            }
+            xmlhttp.open("GET","JsonServlet?now="+new Date().getTime(),true)
+            xmlhttp.send();
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="date"><button id="btn" onclick="clickme()">点我</button>
+</body>
+</html>
