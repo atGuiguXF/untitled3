@@ -9,6 +9,8 @@ public class Student {
     private Date birthday;
     private Integer country;
     private String hobby;
+    private Integer sex;
+    private Integer tid;
 
     @Override
     public String toString() {
@@ -19,6 +21,8 @@ public class Student {
                 ", birthday=" + birthday +
                 ", country=" + country +
                 ", hobby='" + hobby + '\'' +
+                ", sex=" + sex +
+                ", tid=" + tid +
                 '}';
     }
 
@@ -70,15 +74,33 @@ public class Student {
         this.hobby = hobby;
     }
 
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    public Integer getTid() {
+        return tid;
+    }
+
+    public void setTid(Integer tid) {
+        this.tid = tid;
+    }
+
     public Student() {
     }
 
-    public Student(Integer id, String stuno, String name, Date birthday, Integer country, String hobby) {
+    public Student(Integer id, String stuno, String name, Date birthday, Integer country, String hobby, Integer sex, Integer tid) {
         this.id = id;
         this.stuno = stuno;
         this.name = name;
         this.birthday = birthday;
         this.country = country;
         this.hobby = hobby;
+        this.sex = sex;
+        this.tid = tid;
     }
 }
