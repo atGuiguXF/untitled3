@@ -6,12 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="bookstore-client" />
         <module name="bookstore-server" />
-        <module name="xmlandjson" />
         <module name="web" />
         <module name="xfTarget1" />
         <module name="hy2205-javaweb-xf" />
+        <module name="mybatis" />
+        <module name="bookstore-client" />
+        <module name="xmlandjson" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
