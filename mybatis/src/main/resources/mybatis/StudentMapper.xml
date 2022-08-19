@@ -5,5 +5,5 @@
 
 <!-- 复杂查询语句写在这里，其他简单语句用注解 -->
 <mapper namespace="com.heying.mybatis.mapper.StudentMapper">
-
+<!--随便写点注释玩玩-->
 </mapper>
