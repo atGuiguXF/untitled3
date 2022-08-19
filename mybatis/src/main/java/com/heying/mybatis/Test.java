@@ -18,5 +18,7 @@ public class Test {
         //一级缓存
         SqlSession session = sqlSessionFactory.openSession();
 
+
+
     }
 }
