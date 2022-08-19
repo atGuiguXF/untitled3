@@ -20,6 +20,7 @@
         <module>xmlandjson</module>
         <module>xmlandjson</module>
         <module>mybatis</module>
+        <module>mybatis</module>
     </modules>
 
     <properties>
