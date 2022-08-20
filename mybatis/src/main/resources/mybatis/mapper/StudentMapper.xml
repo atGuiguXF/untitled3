@@ -5,6 +5,7 @@
 
 <!-- 复杂查询语句写在这里，其他简单语句用注解 -->
 <mapper namespace="com.heying.mybatis.mapper.StudentMapper">
+    //id要和接口方法名一致
     <insert id="insertOne" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         insert into student
         values (null, #{stuno}, #{name}, #{birthday}, #{country},
@@ -39,14 +40,19 @@
         from student
     </select>
 
+<!--  这里的id与下面resultMap相对应 type放主数据  -->
     <resultMap id="stuTeacherMapN1" type="Student">
         <!--        <id property="id" column="id"/>-->
+                <!--   映射关系 属性和表字段 的映射关系     -->
         <!--        <result property="stuno" column="stuno"/>-->
         <!--        <result property="tid" column="tid"/>-->
+<!--    配个关系 association    -->
+<!--    默认fetchType lazy模式 延迟加载    -->
         <association property="teacher" javaType="Teacher" column="tid" fetchType="eager"
                      select="com.heying.mybatis.mapper.TeacherMapper.selectById"/>
     </resultMap>
 
+<!-- resultMap结果映射集   -->
     <select id="selectStudentAndTeacherByIdN1" resultMap="stuTeacherMapN1">
         select * from student where id=#{id}
     </select>
