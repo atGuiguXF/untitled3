@@ -5,7 +5,7 @@
 
 <!-- 复杂查询语句写在这里，其他简单语句用注解 -->
 <mapper namespace="com.heying.mybatis.mapper.StudentMapper">
-    //id要和接口方法名一致
+<!--  xml写法  具体看公司用哪种 id要和接口方法名一致-->
     <insert id="insertOne" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         insert into student
         values (null, #{stuno}, #{name}, #{birthday}, #{country},

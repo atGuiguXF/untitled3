@@ -10,11 +10,11 @@ import java.util.List;
 public interface StudentMapper {
 
 //增->新建一个学生方法  注解sql语句
-    //加一个配置  使用自增长  级联插入很有用
+    //加一个配置  使用自增长/属性/字段名  级联插入很有用
     //    @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
 //    @Insert("insert into student values(null,#{stuno},#{name},#{birthday},#{country}," +
-//            "#{hobby},#{sex},#{tid})")
-    void insertOne(Student student);
+//            "#{hobby},#{sex},#{tid})")//注解 + sql语句
+    void insertOne(Student student);//插入无返回值 void insertOne()方法 里面封装学生实例
 
 //查->查询单个
     //    @Select("select * from student where id=#{id}")
