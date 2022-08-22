@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 复杂查询语句写在这里，其他简单语句用注解 -->
+<mapper namespace="com.heying.mybatis.mapper.CourseMapper">
+    <sql id="CourseCols">
+    c.id AS cid,
+    c.cno AS cno,
+    c.cname AS cname,
+    c.points AS cpoints,
+    c.img AS cimg
+    </sql>
+
+    <resultMap id="CourseAndStuAndScoreAndTeaMap" type="Course">
+        <id property="id" column="cid"/>
+        <result property="cno" column="cno"/>
+        <result property="cname" column="cname"/>
+        <result property="points" column="cpoints"/>
+        <result property="img" column="cimg"/>
+        <collection property="students" ofType="Student">
+            <id property="id" column="sid"/>
+            <result property="name" column="sname"/>
+            <result property="birthday" column="sbirthday"/>
+            <result property="country" column="scountry"/>
+            <result property="stuno" column="stuno"/>
+            <result property="hobby" column="shobby"/>
+            <result property="sex" column="ssex"/>
+            <association property="teacher" javaType="Teacher">
+                <id property="id" column="tid"/>
+                <result property="name" column="tname"/>
+                <result property="age" column="tage"/>
+            </association>
+            <association property="score" javaType="Score">
+                <id property="id" column="scid"/>
+                <result property="score" column="score"/>
+            </association>
+        </collection>
+    </resultMap>
+
+    <select id="selectCourseAndStudentAndScoreAndTeacher" resultMap="CourseAndStuAndScoreAndTeaMap">
+        select
+        <include refid="CourseCols"/>,
+        <include refid="com.heying.mybatis.mapper.StudentMapper.stucols"/>,
+        <include refid="com.heying.mybatis.mapper.TeacherMapper.teachercols"/>,
+        sc.score AS score,
+        sc.id AS scid
+        FROM student s JOIN teacher t ON s.tid = t.id
+        JOIN score sc ON s.id = sc.sid
+        JOIN course c ON sc.cid = c.id
+        <where>
+            <if test="cname!=null and cname!=''">
+                <bind name="%cname%" value="'%' + _parameter.getCname() + '%'"/>
+                and cname like #{%cname%}
+            </if>
+            <if test="cno != null and cno != '' ">
+                and cno =#{cno}
+            </if>
+        </where>
+
+
+    </select>
+</mapper>

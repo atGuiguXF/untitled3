@@ -1,8 +1,9 @@
 package com.heying.mybatis.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Teacher {
+public class Teacher implements Serializable {
 
     private Integer id;
 

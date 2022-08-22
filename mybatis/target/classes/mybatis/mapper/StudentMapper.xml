@@ -5,6 +5,7 @@
 
 <!-- 复杂查询语句写在这里，其他简单语句用注解 -->
 <mapper namespace="com.heying.mybatis.mapper.StudentMapper">
+<cache/>
     <insert id="insertOne" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         insert into student
         values (null, #{stuno}, #{name}, #{birthday}, #{country},
@@ -48,11 +49,14 @@
     </resultMap>
 
     <select id="selectStudentAndTeacherByIdN1" resultMap="stuTeacherMapN1">
-        select * from student where id=#{id}
+        select *
+        from student
+        where id = #{id}
     </select>
 
     <select id="selectAllStudentAndTeacherN1" resultMap="stuTeacherMapN1">
-        select * from student
+        select *
+        from student
     </select>
 
     <resultMap id="stuTeacherMap" type="Student">
@@ -68,17 +72,129 @@
             <result property="age" column="tage"/>
         </association>
     </resultMap>
+
+    <sql id="stucols">
+        s
+        .
+        id
+        as sid,
+               s.stuno as stuno,
+               s.name as sname,
+               s.birthday as sbirthday,
+               s.hobby as shobby,
+               s.sex as ssex
+    </sql>
     <select id="selectAllStudentAndTeacher" resultMap="stuTeacherMap">
         select
-            s.id as sid,
-            s.stuno as stuno,
-            s.name as sname,
-            s.birthday as sbirthday,
-            s.hobby as shobby,
-            s.sex as ssex,
-            t.id as tid,
-            t.name as tname,
-            t.age as tage
+        <include refid="stucols"/>,
+        <include refid="com.heying.mybatis.mapper.TeacherMapper.teachercols"/>
         from student s left join teacher t on s.tid = t.id
     </select>
+
+    <select id="selectSomeStudentAndTeacher" resultMap="stuTeacherMap">
+        select
+        <include refid="stucols"/>,
+        <include refid="com.heying.mybatis.mapper.TeacherMapper.teachercols"/>
+        from student s left join teacher t on s.tid = t.id
+        <where>
+            <if test="name!=null and name !=''">
+                <!--<bind name="%sname%" value="'%' + _parameter.getName() + '%'"/>-->
+                <!--                 and s.name like #{%sname%} -->
+                and s.name like '%${name}%'
+            </if>
+            <if test="country!=null">
+                and s.country = #{country}
+            </if>
+            <if test="teacher!=null and teacher.name!=null and teacher.name !=''">
+                <bind name="%tname%" value="'%' + _parameter.getTeacher().getName() + '%'"/>
+                and t.name like #{%tname%}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateSomeStudentCols">
+        update student
+        <set>
+            <if test="stuno != null and stuno != ''">
+                stuno=#{stuno},
+            </if>
+            <if test="name!=null and name != ''">
+                name =#{name},
+            </if>
+            <if test="birthday!=null">
+                birthday=#{birthday},
+            </if>
+            <if test="country!=null">
+                country=#{country},
+            </if>
+            <if test="hobby!=null and hobby!=''">
+                hobby=#{hobby},
+            </if>
+        </set>
+        where id =#{id}
+    </update>
+
+    <delete id="deleteSome">
+        delete from student where id in
+        <foreach item="item" index="index"
+                 collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <resultMap id="stuTeacherScoreCourseMap" type="Student">
+        <id property="id" column="sid"/>
+        <result property="name" column="sname"/>
+        <result property="birthday" column="sbirthday"/>
+        <result property="country" column="scountry"/>
+        <result property="stuno" column="stuno"/>
+        <result property="hobby" column="shobby"/>
+        <result property="sex" column="ssex"/>
+        <association property="teacher" javaType="Teacher">
+            <id property="id" column="tid"/>
+            <result property="name" column="tname"/>
+            <result property="age" column="tage"/>
+        </association>
+        <collection property="scores" ofType="Score">
+            <id property="id" column="scid"/>
+            <result property="score" column="score"/>
+            <association property="course" javaType="Course">
+                <id property="id" column="cid"/>
+                <result property="cno" column="cno"/>
+                <result property="cname" column="cname"/>
+                <result property="points" column="cpoints"/>
+                <result property="img" column="cimg"/>
+            </association>
+        </collection>
+    </resultMap>
+
+    <select id="selectSomeStudentAndTeacherAndScoreAndCourse" resultMap="stuTeacherScoreCourseMap">
+        select
+        <include refid="stucols"/>,
+        <include refid="com.heying.mybatis.mapper.TeacherMapper.teachercols"/>,
+        sc.score as score,sc.id as scid,
+        c.id as cid,
+        c.cno as cno,
+        c.cname as cname,
+        c.points as cpoints,
+        c.img as cimg
+        from student s join teacher t on s.tid = t.id
+        join score sc on s.id = sc.sid
+        join course c on sc.cid = c.id
+        <where>
+            <if test="name!=null and name !=''">
+                <bind name="%sname%" value="'%' + _parameter.getName() + '%'"/>
+                and s.name like #{%sname%}
+            </if>
+            <if test="country!=null">
+                and s.country = #{country}
+            </if>
+            <if test="teacher!=null and teacher.name!=null and teacher.name !=''">
+                <bind name="%tname%" value="'%' + _parameter.getTeacher().getName() + '%'"/>
+                and t.name like #{%tname%}
+            </if>
+        </where>
+    </select>
+
+
 </mapper>

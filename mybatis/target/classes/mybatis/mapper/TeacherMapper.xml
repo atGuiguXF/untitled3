@@ -10,4 +10,51 @@
         <collection property="students" ofType="Student" column="id"
                     select="com.heying.mybatis.mapper.StudentMapper.selectByTid"/>
     </resultMap>
+    <resultMap id="teacherStuMap" type="Teacher">
+        <id property="id" column="tid"/>
+        <result property="name" column="tname"/>
+        <result property="age" column="tage"/>
+        <collection property="students" ofType="Student">
+            <id property="id" column="sid"/>
+            <result property="name" column="sname"/>
+            <result property="birthday" column="sbirthday"/>
+            <result property="stuno" column="stuno"/>
+            <result property="hobby" column="shobby"/>
+            <result property="sex" column="ssex"/>
+        </collection>
+    </resultMap>
+
+    <sql id="teachercols">
+        t
+        .
+        id
+        as tid,
+               t.name as tname,
+               t.age as tage
+    </sql>
+
+    <select id="selectAllTeacherAndStudent" resultMap="teacherStuMap">
+        select
+        <include refid="com.heying.mybatis.mapper.StudentMapper.stucols"/>,
+        <include refid="teachercols"/>
+        from student s right join teacher t on s.tid = t.id
+    </select>
+
+    <select id="selectSomeTeacherAndStudent" resultMap="teacherStuMap">
+        select
+        <include refid="com.heying.mybatis.mapper.StudentMapper.stucols"/>,
+        <include refid="teachercols"/>
+        from student s right join teacher t on s.tid = t.id
+        <where>
+            <if test="name!=null and name !=''">
+                <bind name="%tname%" value="'%' + _parameter.name + '%'"/>
+                and t.name like #{%tname%}
+                <!-- t.name like '%${name}%' -->
+            </if>
+            <if test="age!=null">
+                and t.age = #{age}
+            </if>
+
+        </where>
+    </select>
 </mapper>

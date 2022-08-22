@@ -1,8 +1,10 @@
 package com.heying.mybatis.entity;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class Student {
+public class Student implements Serializable {
     private Integer id;
 
     private String stuno;
@@ -16,6 +18,26 @@ public class Student {
     private String hobby;
 
     private Teacher teacher;
+
+    private List<Score> scores;
+
+    private Score score;
+
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
+    }
+
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
+    }
 
     public Teacher getTeacher() {
         return teacher;

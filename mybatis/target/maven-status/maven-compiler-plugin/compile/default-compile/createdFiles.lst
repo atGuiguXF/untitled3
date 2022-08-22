@@ -1,0 +1,5 @@
+com\heying\mybatis\Test.class
+com\heying\mybatis\entity\Student.class
+com\heying\mybatis\entity\Teacher.class
+com\heying\mybatis\mapper\StudentMapper.class
+com\heying\mybatis\mapper\TeacherMapper.class

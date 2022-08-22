@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
-  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<properties resource="db.properties"/>
 	<settings>
@@ -10,7 +10,7 @@
 		<!--延迟加载的全局开关。当开启时，所有关联对象都会延迟加载。  特定关联关系中可通过设置fetchType属性来覆盖该项的开关状态。默认值false   -->
 		<setting name="lazyLoadingEnabled" value="true" />
 		<!-- aggressiveLazyLoading：积极的懒加载，false的话按需加载，默认是true -->
-       <setting name="aggressiveLazyLoading" value="false"/>
+		<setting name="aggressiveLazyLoading" value="false"/>
 		<!-- 是否允许单一语句返回多结果集（需要兼容驱动）。 默认值true  -->
 		<setting name="multipleResultSetsEnabled" value="true" />
 		<!-- 使用列标签代替列名。不同的驱动在这方面会有不同的表现，  具体可参考相关驱动文档或通过测试这两种不同的模式来观察所用驱动的结果。 默认值true  -->
@@ -31,14 +31,14 @@
 		<setting name="logImpl" value="STDOUT_LOGGING" />
 	</settings>
 
-		<!-- 设置别名 -->
-		<typeAliases>
-<!--		<typeAlias alias="Student" type="com.banyuan.mybatis.entity.Student" />-->
-<!--		<typeAlias alias="Teacher" type="com.banyuan.mybatis.entity.Teacher" />-->
-<!--		<typeAlias alias="Course" type="com.banyuan.mybatis.entity.Course" />-->
-<!--		<typeAlias alias="Course" type="com.banyuan.mybatis.entity.Score" />-->
+	<!-- 设置别名 -->
+	<typeAliases>
+		<!--		<typeAlias alias="Student" type="com.banyuan.mybatis.entity.Student" />-->
+		<!--		<typeAlias alias="Teacher" type="com.banyuan.mybatis.entity.Teacher" />-->
+		<!--		<typeAlias alias="Course" type="com.banyuan.mybatis.entity.Course" />-->
+		<!--		<typeAlias alias="Course" type="com.banyuan.mybatis.entity.Score" />-->
 		<package name="com.heying.mybatis.entity"/>
-		</typeAliases>
+	</typeAliases>
 
 
 	<plugins>
@@ -47,7 +47,7 @@
 		</plugin>
 	</plugins>
 
-		<environments default="development">
+	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
@@ -57,11 +57,11 @@
 				<property name="password" value="${password}" />
 			</dataSource>
 		</environment>
-       </environments>
+	</environments>
 
-		<mappers>
-			<mapper resource="mybatis/mapper/StudentMapper.xml"/>
-			<mapper resource="mybatis/mapper/TeacherMapper.xml"/>
-<!--			<mapper resource="mybatis/mapper/CourseMapper.xml"/>-->
-		</mappers>
+	<mappers>
+		<mapper resource="mybatis/mapper/StudentMapper.xml"/>
+		<mapper resource="mybatis/mapper/TeacherMapper.xml"/>
+					<mapper resource="mybatis/mapper/CourseMapper.xml"/>
+	</mappers>
 </configuration>
