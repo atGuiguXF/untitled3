@@ -3,12 +3,14 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/hy2205-javaweb-xf/web" />
+    <file type="web" url="file://$PROJECT_DIR$/springmvc" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/hy2205-javaweb-xf/web/pom.xml" />
+        <option value="$PROJECT_DIR$/springmvc/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

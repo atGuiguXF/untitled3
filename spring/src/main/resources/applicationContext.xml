@@ -1,0 +1,104 @@
+<!--suppress ALL -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                     http://www.springframework.org/schema/context
+                     http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                     http://www.springframework.org/schema/aop
+                     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+    <!--    <bean id="car" class="com.heying.spring.xml.Car">-->
+    <!--        <property name="band" value="奔驰"/>-->
+    <!--        <property name="color" value="红色"/>-->
+    <!--        <property name="price" value="30"/>-->
+    <!--    </bean>-->
+    <!--    <bean id="tank" class="com.heying.spring.xml.Tank">-->
+    <!--        <property name="band" value="中式"/>-->
+    <!--        <property name="color" value="黑色"/>-->
+    <!--        <property name="price" value="100"/>-->
+    <!--    </bean>-->
+    <!--    &lt;!&ndash; scope 不写默认单例singleton  可以改为scope为prototype 原型模式 每次都new   &ndash;&gt;-->
+    <!--    <bean id="driver" class="com.heying.spring.xml.Driver" scope="prototype">-->
+    <!--        <property name="name" value="王师傅"/>-->
+    <!--        <property name="age" value="50"/>-->
+    <!--        <property name="vehicle" ref="car"/>-->
+    <!--    </bean>-->
+    <!--    <bean id="aaa" class="com.heying.spring.xml.AAA">-->
+    <!--        <property name="aaa" value="aaa"/>-->
+    <!--        <property name="bbb" value="123"/>-->
+    <!--        <property name="ccc" value="2022/12/12"/>-->
+    <!--        <property name="ddd">-->
+    <!--            <list>-->
+    <!--                <value>aaa</value>-->
+    <!--                <value>bbb</value>-->
+    <!--                <value>ccc</value>-->
+    <!--            </list>-->
+    <!--        </property>-->
+    <!--        <property name="eee">-->
+    <!--            <set>-->
+    <!--                <value>111</value>-->
+    <!--                <value>222</value>-->
+    <!--                <value>333</value>-->
+    <!--            </set>-->
+    <!--        </property>-->
+    <!--        <property name="fff">-->
+    <!--            <map>-->
+    <!--                <entry key="height" value="179"/>-->
+    <!--                <entry key="weight" value="120"/>-->
+    <!--            </map>-->
+    <!--        </property>-->
+    <!--    </bean>-->
+
+    <!--    <bean id="borrower" class="com.heying.spring.xml.Student" scope="singleton">-->
+    <!--        <constructor-arg name="name" value="张三"/>-->
+    <!--        <constructor-arg name="money" value="0"/>-->
+    <!--        <property name="student" ref="lender"/>-->
+    <!--    </bean>-->
+    <!--    <bean id="lender" class="com.heying.spring.xml.Student" scope="singleton">-->
+    <!--        <constructor-arg name="name" value="李四"/>-->
+    <!--        <constructor-arg name="money" value="100"/>-->
+    <!--        <property name="student" ref="borrower"/>-->
+    <!--    </bean>-->
+
+    <!-- 加注解  -->
+    <!--    <context:annotation-config/>-->
+    <!--&lt;!&ndash;    &ndash;&gt;-->
+    <!--    <context:component-scan base-package="com.heying.spring"/>-->
+
+<!--    <bean id="audience" class="com.heying.spring.aop.xml.Audience"/>-->
+<!--    <bean id="performer" class="com.heying.spring.aop.xml.artist.Performer"/>-->
+<!--    <bean id="singer" class="com.heying.spring.aop.xml.artist.Singer"/>-->
+<!--    <aop:aspectj-autoproxy/>-->
+<!--    <aop:config>-->
+<!--        &lt;!&ndash;        <aop:aspect ref="audience">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <aop:before method="takeSeat" pointcut="execution (* com.heying.spring.aop.xml.artist.Performer.perform(..))"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <aop:before method="turnOffPhone" pointcut="execution (* com.heying.spring.aop.xml.artist.Performer.perform(..))"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <aop:after-returning method="applaud" pointcut="execution (* com.heying.spring.aop.xml.artist.Performer.perform(..))"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <aop:after-throwing method="throwEggs" pointcut="execution (* com.heying.spring.aop.xml.artist.Performer.perform(..))"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </aop:aspect>&ndash;&gt;-->
+<!--        <aop:aspect ref="audience">-->
+<!--            <aop:around method="arround" pointcut="execution (* com.heying.spring.aop.xml.artist.*.*(..))"/>-->
+<!--            <aop:before method="takeSeat" pointcut="execution (* com.heying.spring.aop.xml.artist.*.*(..))"/>-->
+<!--            <aop:before method="turnOffPhone" pointcut="execution (* com.heying.spring.aop.xml.artist.*.*(..))"/>-->
+<!--            <aop:after-returning method="applaud" pointcut="execution (* com.heying.spring.aop.xml.artist.*.*(..))"/>-->
+<!--            <aop:after-throwing method="throwEggs" pointcut="execution (* com.heying.spring.aop.xml.artist.*.*(..))"/>-->
+<!--            <aop:after method="goOut" pointcut="execution (* com.heying.spring.aop.xml.artist.*.*(..))"/>-->
+<!--        </aop:aspect>-->
+
+<!--&lt;!&ndash;   配置     &ndash;&gt;-->
+<!--        <aop:aspect>-->
+<!--            <aop:declare-parents-->
+<!--                    types-matching="com.heying.spring.aop.xml.artist.Performer+"-->
+<!--                    implement-interface="com.heying.spring.aop.xml.Encoreable"-->
+<!--                    default-impl="com.heying.spring.aop.xml.DefaultEncoreable"/>-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+
+
+</beans>

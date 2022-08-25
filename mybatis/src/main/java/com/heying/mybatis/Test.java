@@ -13,7 +13,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
-
+/**
+ * 主要封装JDBC  进行ORM映射 很多时候像操作数据库的工具 操作性更强
+ * */
 public class Test {
     public static void main(String[] args) throws IOException, InterruptedException {
         String resource = "mybatis-config.xml";

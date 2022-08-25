@@ -1,0 +1,8 @@
+com\heying\springmvc\config\WebConfig.class
+com\heying\springmvc\controller\UserController.class
+com\heying\springmvc\entity\User.class
+com\heying\springmvc\config\MyServletInitializer.class
+com\heying\springmvc\config\RootConfig.class
+com\heying\springmvc\config\SpittrWebAppInitializer.class
+com\heying\springmvc\Database.class
+com\heying\springmvc\controller\HomeController.class
