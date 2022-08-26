@@ -27,7 +27,7 @@
             $("#submitBtn").click(function () {
                 var params = $("#myform").serialize();
                 console.log(params)
-                $.get("http://localhost:8080//springmvc_war_exploded/user/ajax/addone?"+params,function (result) {
+                $.get("http://localhost:8080/springmvc_war_exploded/user/ajax/addone?"+params,function (result) {
                     alert(result)
                 })
             })
@@ -55,7 +55,7 @@
             })
 
             $("#queryBtn").click(function () {
-                $.getJSON("http://localhost:8080/web_war_exploded/QuerySomeUserAjaxServlet?"+$("#myform2").serialize(),
+                $.getJSON("http://localhost:8080/springmvc_war_exploded/user/ajax/querysome?"+$("#myform2").serialize(),
                     function (list) {
                         // console.log(list)
                         var html = "<table>"

@@ -4,6 +4,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/hy2205-javaweb-xf/web" />
     <file type="web" url="file://$PROJECT_DIR$/springmvc" />
+    <file type="web" url="file://$PROJECT_DIR$/ssm" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -11,6 +12,8 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/hy2205-javaweb-xf/web/pom.xml" />
         <option value="$PROJECT_DIR$/springmvc/pom.xml" />
+        <option value="$PROJECT_DIR$/ssm/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-taco/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

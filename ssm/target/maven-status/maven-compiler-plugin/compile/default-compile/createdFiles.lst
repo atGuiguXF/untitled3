@@ -1,0 +1,11 @@
+com\heying\ssm\entity\UserInfo.class
+com\heying\ssm\config\WebConfig.class
+com\heying\ssm\controller\UserController.class
+com\heying\ssm\config\MyBatisConfig$1.class
+com\heying\ssm\service\UserServiceIn.class
+com\heying\ssm\config\RootConfig.class
+com\heying\ssm\config\MyServletInitializer.class
+com\heying\ssm\service\UserService.class
+com\heying\ssm\config\SpittrWebAppInitializer.class
+com\heying\ssm\mapper\UserMapper.class
+com\heying\ssm\config\MyBatisConfig.class
