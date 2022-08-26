@@ -38,7 +38,7 @@ public class DesignTacoController {
         }
 
         final Taco taco = new Taco();
-        taco.setName("这是默认 Taco 的签名");
+        taco.setName("这是默认 Taco 的签名");//果然厉害
         model.addAttribute("design", taco);
         return "design";
     }
