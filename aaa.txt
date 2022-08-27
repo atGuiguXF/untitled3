@@ -16,4 +16,4 @@ kkk
 
 再次测试推送远程库
 
-test push github
+test push gitee
