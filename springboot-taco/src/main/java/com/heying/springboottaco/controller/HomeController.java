@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController {
 
-    @RequestMapping("/")
+    @RequestMapping("/")//一级路径
     @ResponseBody
     public String home() {
 
